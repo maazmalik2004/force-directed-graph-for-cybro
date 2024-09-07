@@ -1,5 +1,17 @@
 .App {
   text-align: center;
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  flex-direction: column; /* Arrange children in a column */
+}
+
+.input-panel{
+  flex: 0 1 auto;
+  background-color: aqua;
+}
+
+.graph-area{
+  flex: 1 1 auto;
 }
 
 .App-logo {
