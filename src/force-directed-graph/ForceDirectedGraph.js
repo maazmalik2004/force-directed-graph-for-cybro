@@ -1,7 +1,9 @@
-import React, { useCallback, useEffect, useRef } from 'react';
+// ForceDirectedGraph.js
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 import { zoom } from 'd3-zoom';
 import { useNode } from './GraphStateContext';
+import Tooltip from './Tooltip';
 
 const defaultConfig = {
     node: {
@@ -38,6 +40,7 @@ function ForceDirectedGraph({ data, config = defaultConfig }) {
     const svgRef = useRef();
     const zoomBehavior = useRef();
     const nodeSelectionRef = useRef();
+    const [tooltip, setTooltip] = useState({ x: 0, y: 0, content: '' });
 
     const widthRef = useRef(window.innerWidth);
     const heightRef = useRef(window.innerHeight);
@@ -45,17 +48,14 @@ function ForceDirectedGraph({ data, config = defaultConfig }) {
     const { selectedNode, setSelectedNode, setSearchResponseMessage } = useNode();
 
     const centerNode = useCallback((nodeId) => {
-        console.log("inside center node inside force directed graph : ", nodeId);
-
         const node = data.nodes.find(n => n.id === nodeId);
         if (!node) {
-            console.warn("Node with ID:", nodeId, "not found.");
             setSearchResponseMessage("node not found");
             d3.select(svgRef.current).transition()
                 .duration(750)
                 .call(zoomBehavior.current.transform, d3.zoomIdentity);
             return;
-        }else{
+        } else {
             setSearchResponseMessage("node found");
         }
 
@@ -65,9 +65,6 @@ function ForceDirectedGraph({ data, config = defaultConfig }) {
         const height = svgElement.clientHeight;
 
         const zoomScaleFactor = 2;
-        const nodeSize = config.node.radius;
-        const enlargedSize = config.node.enlargedRadius;
-
         const tx_new = width / 2 - (x * zoomScaleFactor);
         const ty_new = height / 2 - (y * zoomScaleFactor);
 
@@ -79,7 +76,7 @@ function ForceDirectedGraph({ data, config = defaultConfig }) {
         nodeSelectionRef.current
             .transition()
             .duration(750)
-            .attr("r", d => d.id === nodeId ? enlargedSize : nodeSize);
+            .attr("r", d => d.id === nodeId ? config.node.enlargedRadius : config.node.radius);
     }, [data.nodes, config.node.radius, config.node.enlargedRadius, setSearchResponseMessage]);
 
     useEffect(() => {
@@ -157,8 +154,16 @@ function ForceDirectedGraph({ data, config = defaultConfig }) {
                 .enter().append("circle")
                 .attr("r", config.node.radius)
                 .attr("fill", d => colorScale(d.score))
+                .on("mouseover", (event, d) => {
+                    setTooltip({ x: event.pageX, y: event.pageY, content: `Node ID: ${d.id}` });
+                })
+                .on("mousemove", (event) => {
+                    setTooltip(prev => ({ ...prev, x: event.pageX, y: event.pageY }));
+                })
+                .on("mouseout", () => {
+                    setTooltip({ x: 0, y: 0, content: '' });
+                })
                 .on("click", (event, d) => {
-                    console.log("d object looks like : ", d);
                     setSelectedNode(d.id); // Setting node ID, not the whole node object
                     centerNode(d.id);
                 })
@@ -222,13 +227,17 @@ function ForceDirectedGraph({ data, config = defaultConfig }) {
     }, [data, config, centerNode, setSelectedNode]);
 
     useEffect(() => {
-        console.log("inside use effect inside force directed graph : ", selectedNode);
         if (selectedNode != null) {
             centerNode(selectedNode);
         }
     }, [selectedNode, centerNode]);
 
-    return <svg ref={svgRef}></svg>;
+    return (
+        <>
+            <svg ref={svgRef} />
+            <Tooltip x={tooltip.x} y={tooltip.y} content={tooltip.content} />
+        </>
+    );
 }
 
 export default ForceDirectedGraph;

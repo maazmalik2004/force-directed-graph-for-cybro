@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNode } from './GraphStateContext';
+import { useNode } from './force-directed-graph/GraphStateContext';
 
 function UpdateNodeInput() {
     const { selectedNode, setSelectedNode, searchResponseMessage} = useNode();

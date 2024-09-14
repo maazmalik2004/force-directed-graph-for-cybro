@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
-import ForceDirectedGraph from './ForceDirectedGraph';
-import graphData from './GraphData';
-import config from './ForceDirectedGraphConfig';
-import { GraphStateProvider } from './GraphStateContext';
+import ForceDirectedGraph from './force-directed-graph/ForceDirectedGraph';
+import graphData from './force-directed-graph/GraphData';
+import config from './force-directed-graph/ForceDirectedGraphConfig';
+import { GraphStateProvider } from './force-directed-graph/GraphStateContext';
 //import generateGraphData from './GenerateGraphData';
 //const graphData = generateGraphData();
 import UpdateNodeInput from './UpdateNodeInput';
