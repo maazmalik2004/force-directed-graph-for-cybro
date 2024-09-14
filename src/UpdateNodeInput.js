@@ -14,7 +14,7 @@ function UpdateNodeInput() {
     };
 
     return (
-        <div style={{backgroundColor:"#E0DFFF", borderBottomLeftRadius:"30px", borderBottomRightRadius:"30px"}}>
+        <div style={{backgroundColor:"#1D4ED8", borderBottomLeftRadius:"10px", borderBottomRightRadius:"10px", height:"15vh",minHeight:"15vh"}}>
             <p>{searchResponseMessage}</p>
             <input
                 type="text"

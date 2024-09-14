@@ -1,0 +1,45 @@
+.sidepanel {
+    --sidebar-bg-color: rgba(44, 44, 44, 0.5);
+    --item-bg-color: rgba(224, 224, 224, 0.8);
+    --border-radius: 10px;
+    --padding: 25px;
+    --box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
+    --min-width: 300px;
+    --width: 25vw;
+    --collapsed-width: 80px;
+    --height: 75vh;
+    --margin-bottom: 20px;
+  
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    min-width: var(--min-width);
+    width: var(--width);
+    height: var(--height);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);    
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: var(--padding);
+    box-shadow: var(--box-shadow);
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    z-index: 1000;
+    overflow: scroll;
+  }
+  
+  .sidepanel::-webkit-scrollbar {
+    display: none;
+  }
+
+  .sidepanel .panel-item {
+    border-radius: var(--border-radius);
+    background-color: #1D4ED8;/*var(--item-bg-color);
+    */
+    padding: var(--padding);
+    margin-bottom: var(--margin-bottom);
+    font-weight: bold;
+    color:white
+  }

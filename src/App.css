@@ -6,12 +6,10 @@
 }
 
 .input-panel{
-  flex: 0 1 auto;
   background-color: aqua;
 }
 
 .graph-area{
-  flex: 1 1 auto;
 }
 
 .App-logo {

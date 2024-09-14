@@ -7,6 +7,7 @@ import { GraphStateProvider } from './force-directed-graph/GraphStateContext';
 //import generateGraphData from './GenerateGraphData';
 //const graphData = generateGraphData();
 import UpdateNodeInput from './UpdateNodeInput';
+import SidePanel from './side-panel/SidePanel';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
       <div className="App" style={{backgroundColor:"#212121"}}>
         <UpdateNodeInput/>
         <ForceDirectedGraph data={graphData} config={config}/>
+        <SidePanel/>
       </div>
     </GraphStateProvider>
   );
