@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useNode } from './force-directed-graph/GraphStateContext';
+import './update-node-input.css'; // Import the CSS file
 
 function UpdateNodeInput() {
-    const { selectedNode, setSelectedNode, searchResponseMessage} = useNode();
+    const { selectedNode, setSelectedNode, searchResponseMessage } = useNode();
     const [inputValue, setInputValue] = useState(selectedNode || '');
 
     const handleChange = (e) => {
@@ -14,7 +15,7 @@ function UpdateNodeInput() {
     };
 
     return (
-        <div style={{backgroundColor:"#1D4ED8", borderBottomLeftRadius:"10px", borderBottomRightRadius:"10px", height:"15vh",minHeight:"15vh"}}>
+        <div className="update-node-container">
             <p>{searchResponseMessage}</p>
             <input
                 type="text"

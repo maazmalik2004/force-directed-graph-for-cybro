@@ -3,6 +3,7 @@
   height: 100vh; /* Full viewport height */
   display: flex;
   flex-direction: column; /* Arrange children in a column */
+  background-color:#212121;
 }
 
 .input-panel{

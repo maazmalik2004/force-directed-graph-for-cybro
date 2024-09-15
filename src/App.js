@@ -13,7 +13,7 @@ import SidePanel from './side-panel/SidePanel';
 function App() {
   return (
     <GraphStateProvider>
-      <div className="App" style={{backgroundColor:"#212121"}}>
+      <div className="App">
         <UpdateNodeInput/>
         <ForceDirectedGraph data={graphData} config={config}/>
         <SidePanel/>
