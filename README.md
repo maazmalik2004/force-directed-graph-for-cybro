@@ -3,6 +3,8 @@
 
 ![image](https://github.com/user-attachments/assets/6b5395b3-0b2c-4d71-8c48-ad81eeca87b0)
 
+![image](https://github.com/user-attachments/assets/a78f1515-f4ad-4c6f-a6a6-39220b54c4e9)
+
 # Force-Directed Graph Visualization
 
 This project is a **Force-Directed Graph** built with **React** and **D3.js**. It allows users to visualize graph data with interactive features like zooming, panning, node dragging, and dynamic coloring based on node scores.
